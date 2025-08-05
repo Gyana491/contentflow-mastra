@@ -1,13 +1,22 @@
 import { Mastra } from '@mastra/core/mastra';
 import { PinoLogger } from '@mastra/loggers';
-import { weatherWorkflow } from './workflows';
-import { weatherAgent } from './agents';
+import { contentAgent } from './agents/content-agent';
+import { researchAgent } from './agents/research-agent';
+import { contentGenerationWorkflow } from './workflows/content-workflow';
+
 
 export const mastra = new Mastra({
-  workflows: { weatherWorkflow },
-  agents: { weatherAgent },
+  agents: { 
+    contentAgent,
+    researchAgent 
+  },
+  workflows: { 
+    contentGenerationWorkflow 
+  },
+
   logger: new PinoLogger({
-    name: 'Mastra',
+    name: 'LinkedIn-AI-Tool',
     level: 'info',
   }),
 });
+
